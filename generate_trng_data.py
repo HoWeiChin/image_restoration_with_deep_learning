@@ -1,6 +1,6 @@
 from __future__ import print_function, unicode_literals, absolute_import, division
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 from tifffile import imread
 from csbdeep.utils import download_and_extract_zip_file, plot_some, axes_dict
@@ -61,9 +61,10 @@ def generate_anisotropic_training_data(raw_data_obj, anisotropic_transform_obj, 
     #get current working dir of this python programme
     cwd = os.getcwd()
 
-    #create storage folder
+    #create storage folder if folder dont exist
     full_storage_dir = os.path.join(cwd, storage_dir)
-    os.mkdir(full_storage_dir)
+    if not os.path.exists(full_storage_dir):
+        os.mkdir(full_storage_dir)
 
     training_data_name = os.path.join(full_storage_dir, 'training_data.npz')
     save_training_data(training_data_name, input_trng_img_set, output_trng_label_set, img_XY_axes)
